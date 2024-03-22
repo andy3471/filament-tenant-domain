@@ -28,18 +28,18 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->tenant(Tenant::class)
+            ->tenant(Tenant::class, 'domain')
             ->tenantMenu(false)
-            ->tenantDomain('{tenant:domain}')
+            ->tenantDomain('{tenant}')
             ->brandName(function (Panel $panel) {
                 return Filament::getTenant()?->name . ' Admin'?: config('app.name');
             })
-            ->brandLogo(function (Panel $panel) {
-                return Filament::getTenant()?->getFirstMediaUrl('logo', 'nav');
-            })
+//            ->brandLogo(function (Panel $panel) {
+//                return Filament::getTenant()?->getFirstMediaUrl('logo', 'nav');
+//            })
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Red,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

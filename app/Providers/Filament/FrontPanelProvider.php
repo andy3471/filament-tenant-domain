@@ -27,15 +27,15 @@ class FrontPanelProvider extends PanelProvider
         return $panel
             ->id('front')
             ->path('/')
-            ->tenant(Tenant::class)
+            ->tenant(Tenant::class, 'domain')
             ->tenantMenu(false)
-            ->tenantDomain('{tenant:domain}')
+            ->tenantDomain('{tenant}')
             ->brandName(function (Panel $panel) {
                 return Filament::getTenant()?->name ?: config('app.name');
             })
-            ->brandLogo(function (Panel $panel) {
-                return Filament::getTenant()?->getFirstMediaUrl('logo', 'nav');
-            })
+//            ->brandLogo(function (Panel $panel) {
+//                return Filament::getTenant()?->getFirstMediaUrl('logo', 'nav');
+//            })
             ->login()
             ->colors([
                 'primary' => Color::Amber,
